@@ -32,10 +32,10 @@ private:
   controllerList m_controllerList;
 };
 
-m_coolingTypeLimits = TypeWiseAlerterUtility::prepareCoolingTypeLimitsMap();
-m_breachTypeStringMap = TypeWiseAlerterUtility::prepareBreachTypeStringMap();
-m_emailRecepientList = TypeWiseAlerterUtility::prepareEmailRecepientList();
-m_controllerList = TypeWiseAlerterUtility::prepareControllerList();
+TypeWiseAlerterUtility::m_coolingTypeLimits = TypeWiseAlerterUtility::prepareCoolingTypeLimitsMap();
+TypeWiseAlerterUtility::m_breachTypeStringMap = TypeWiseAlerterUtility::prepareBreachTypeStringMap();
+TypeWiseAlerterUtility::m_emailRecepientList = TypeWiseAlerterUtility::prepareEmailRecepientList();
+TypeWiseAlerterUtility::m_controllerList = TypeWiseAlerterUtility::prepareControllerList();
 
 void TypeWiseAlerterUtility::prepareCoolingTypeLimitsMap()
 {
