@@ -19,6 +19,11 @@ public:
   static T_BreachTypeStringMap getBreachTypeStringMap();
   static emailRecepientList getEmailRecepientList();
   static controllerList getControllerList();
+   
+  T_CoolingTypeLimits  m_coolingTypeLimits;
+  T_BreachTypeStringMap m_breachTypeStringMap ;
+  emailRecepientList m_emailRecepientList;
+  controllerList m_controllerList;
 
 private:
   static void prepareCoolingTypeLimitsMap();
@@ -26,10 +31,6 @@ private:
   static void prepareEmailRecepient();
   static void prepareControllerList();
 
-  T_CoolingTypeLimits  m_coolingTypeLimits;
-  T_BreachTypeStringMap m_breachTypeStringMap ;
-  emailRecepientList m_emailRecepientList;
-  controllerList m_controllerList;
 };
 
 TypeWiseAlerterUtility::m_coolingTypeLimits = TypeWiseAlerterUtility::prepareCoolingTypeLimitsMap();
