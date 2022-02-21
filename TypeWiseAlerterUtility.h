@@ -9,10 +9,10 @@ using namespace InfoTypes;
 class TypeWiseAlerterUtility
 {
 public:
-  typedef ::std::map< CoolingType, Limits> T_CoolingTypeLimits;
-  typedef ::std::map< InfoTypes::BreachType, string> T_BreachTypeStringMap;
-  ::std::vector< const char* > emailRecepientList;
-  ::std::vector< const unsigned short> controllerList;
+   typedef ::std::map< CoolingType, Limits> T_CoolingTypeLimits;
+   typedef ::std::map< InfoTypes::BreachType, string> T_BreachTypeStringMap;
+   ::std::vector< const char* > emailRecepientList;
+   ::std::vector< const unsigned short> controllerList;
   static T_CoolingTypeLimits getCoolingTypeLimitsMap();
   static T_BreachTypeStringMap getBreachTypeStringMap();
   static emailRecepientList getEmailRecepientList();
