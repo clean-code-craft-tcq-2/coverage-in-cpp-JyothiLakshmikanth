@@ -4,6 +4,8 @@
 #include <vector>
 #include "InfoTypes.h"
 
+using namspace InfoTypes;
+
 class TypeWiseAlerterUtility
 {
 public:
