@@ -37,3 +37,4 @@ namespace InfoTypes
         double upperLimit = 0.0;
     }Limits;
 }
+#endif
