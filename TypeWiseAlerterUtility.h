@@ -4,6 +4,7 @@
 #include <vector>
 #include "InfoTypes.h"
 
+using namespace std;
 using namespace InfoTypes;
 
 class TypeWiseAlerterUtility
