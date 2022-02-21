@@ -1,32 +1,33 @@
 #pragma once
+#ifndef TYPEWISEALERT_H
+#define TYPEWISEALERT_H
 
-typedef enum {
-  PASSIVE_COOLING,
-  HI_ACTIVE_COOLING,
-  MED_ACTIVE_COOLING
-} CoolingType;
+#include "TypeWiseAlerterUtility.h"
+#include "InfoTypes.h"
 
-typedef enum {
-  NORMAL,
-  TOO_LOW,
-  TOO_HIGH
-} BreachType;
+using namespace std;
+using namespace InfoTypes;
 
-BreachType inferBreach(double value, double lowerLimit, double upperLimit);
-BreachType classifyTemperatureBreach(CoolingType coolingType, double temperatureInC);
+class TypeWiseAlert : public TypeWiseAlerterUtility
+{
+public:
+  TypeWiseAlert();
+  ~TypeWiseAlert();
 
-typedef enum {
-  TO_CONTROLLER,
-  TO_EMAIL
-} AlertTarget;
+  void checkAndAlert(
+      AlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC);
 
-typedef struct {
-  CoolingType coolingType;
-  char brand[48];
-} BatteryCharacter;
-
-void checkAndAlert(
-  AlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC);
-
-void sendToController(BreachType breachType);
-void sendToEmail(BreachType breachType);
+private:
+  BreachType inferBreach(double value, double lowerLimit, double upperLimit);
+  BreachType classifyTemperatureBreach(CoolingType coolingType, double temperatureInC);
+  void sendToController(BreachType breachType);
+  void sendToEmail(BreachType breachType);
+  void updateAlerter(AlertTarget alertTarget, BreachType breachType);
+  
+  typedef ::std::map< CoolingType, Limits> T_CoolingTypeLimits  m_coolingTypeLimits;
+   typedef ::std::map< InfoTypes::BreachType, string> T_BreachTypeStringMap m_breachTypeStringMap;
+   ::std::vector< const char* > emailRecepientList m_emailRecepientList ;
+   ::std::vector< const unsigned short> controllerList m_controllerList;
+   typedef ::std::map< InfoTypes::AlertTarget , void(*fnptr)(BreachType)> T_AlerterMap m_alerterMap;
+};
+#endif
