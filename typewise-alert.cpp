@@ -1,71 +1,94 @@
 #include "typewise-alert.h"
+#include <iostream>
 #include <stdio.h>
+#include <map>
+#include <vector>
 
-BreachType inferBreach(double value, double lowerLimit, double upperLimit) {
-  if(value < lowerLimit) {
+using namespace std;
+using namespace InfoTypes;
+
+TypeWiseAlert::TypeWiseAlert()
+{
+    m_coolingTypeLimits = TypeWiseAlerterUtility::getCoolingTypeLimitsMap();
+    m_breachTypeStringMap = TypeWiseAlerterUtility::getBreachTypeStringMap();
+    m_emailRecepientList = TypeWiseAlerterUtility::getEmailRecepientList();
+    m_controllerList = TypeWiseAlerterUtility::getControllerList();
+    prepareAlerterMap();
+};
+
+TypeWiseAlert::~TypeWiseAlert()
+{
+      m_coolingTypeLimits.clear;
+      m_breachTypeStringMap.clear;
+      m_emailRecepientList.clear;
+      m_controllerList.clear;
+};
+
+void TypeWiseAlert::prepareAlerterMap()
+{
+  m_alerterMap.insert({TO_CONTROLLER, &sendToController});
+  m_alerterMap.insert({TO_EMAIL, &sendToEmail});
+}
+
+Limits TypeWiseAlert::getTheLimitsForCoolingType(CoolingType coolingType)
+{
+  Limits limits;
+  T_CoolingTypeLimits::iterator coolingTypeLimitsIt = m_coolingTypeLimits.find(coolingType);
+  if(coolingTypeLimitsIt != m_coolingTypeLimits.end())
+  {
+    limits = coolingTypeLimitsIt->second;
+  }
+  return limits;
+}
+
+BreachType TypeWiseAlert::inferBreach(double value, Limits limits) {
+  if(value < limits.lowerLimit) {
     return TOO_LOW;
   }
-  if(value > upperLimit) {
+  if(value > limits.upperLimit) {
     return TOO_HIGH;
   }
   return NORMAL;
 }
 
-BreachType classifyTemperatureBreach(
-    CoolingType coolingType, double temperatureInC) {
-  int lowerLimit = 0;
-  int upperLimit = 0;
-  switch(coolingType) {
-    case PASSIVE_COOLING:
-      lowerLimit = 0;
-      upperLimit = 35;
-      break;
-    case HI_ACTIVE_COOLING:
-      lowerLimit = 0;
-      upperLimit = 45;
-      break;
-    case MED_ACTIVE_COOLING:
-      lowerLimit = 0;
-      upperLimit = 40;
-      break;
-  }
-  return inferBreach(temperatureInC, lowerLimit, upperLimit);
+BreachType TypeWiseAlert::classifyTemperatureBreach( CoolingType coolingType, double temperatureInC)
+{
+  return inferBreach(temperatureInC, getTheLimitsForCoolingType(coolingType));
 }
 
-void checkAndAlert(
-    AlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC) {
+void TypeWiseAlert::checkAndAlert( AlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC)
+{
+  BreachType breachType = classifyTemperatureBreach(batteryChar.coolingType, temperatureInC);
+  updateAlerter(alertTarget, breachType);
+}
 
-  BreachType breachType = classifyTemperatureBreach(
-    batteryChar.coolingType, temperatureInC
-  );
-
-  switch(alertTarget) {
-    case TO_CONTROLLER:
-      sendToController(breachType);
-      break;
-    case TO_EMAIL:
-      sendToEmail(breachType);
-      break;
+void TypeWiseAlert::updateAlerter(AlertTarget alertTarget, BreachType breachType)
+{
+  T_AlerterMap::iterator alerterMapIt = m_alerterMap.find(alertTarget);
+  if(alerterMapIt != m_alerterMap.end())
+  {
+    void(*fnptr)(BreachType) ptr = &alerterMapIt->second;
+    ptr(breachType);
   }
 }
 
-void sendToController(BreachType breachType) {
-  const unsigned short header = 0xfeed;
-  printf("%x : %x\n", header, breachType);
+void TypeWiseAlert::sendToController(BreachType breachType) {
+   controllerList::ierator controllerListIt =  m_controllerList.begin();
+  for(; controllerListIt !=  m_controllerList.end(); ++controllerListIt)
+  {
+    printf("%x : %x\n", *controllerListIt, breachType);
+  }
 }
 
-void sendToEmail(BreachType breachType) {
-  const char* recepient = "a.b@c.com";
-  switch(breachType) {
-    case TOO_LOW:
-      printf("To: %s\n", recepient);
-      printf("Hi, the temperature is too low\n");
-      break;
-    case TOO_HIGH:
-      printf("To: %s\n", recepient);
-      printf("Hi, the temperature is too high\n");
-      break;
-    case NORMAL:
-      break;
+void TypeWiseAlert::sendToEmail(BreachType breachType) {
+  emailRecepientList::iterator emailRecepientListIt = m_emailRecepientList.begin() ;
+  for(; emailRecepientListIt !=  m_emailRecepientList.end(); ++emailRecepientListIt)
+  {
+    const char* recepient = *emailRecepientListIt;
+    T_BreachTypeStringMap::iterator breachTypeStringMapIt = m_breachTypeStringMap.find(breachType);
+    if(breachTypeStringMapIt != m_breachTypeStringMap.end())
+    {
+      printf(breachTypeStringMapIt->second);
+    }
   }
 }
