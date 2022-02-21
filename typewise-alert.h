@@ -23,6 +23,7 @@ private:
   void sendToController(BreachType breachType);
   void sendToEmail(BreachType breachType);
   void updateAlerter(AlertTarget alertTarget, BreachType breachType);
+  void prepareAlerterMap();
   
   typedef ::std::map< CoolingType, Limits> T_CoolingTypeLimits  m_coolingTypeLimits;
    typedef ::std::map< InfoTypes::BreachType, string> T_BreachTypeStringMap m_breachTypeStringMap;
