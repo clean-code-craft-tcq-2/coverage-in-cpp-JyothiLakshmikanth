@@ -20,10 +20,10 @@ public:
   static emailRecepientList getEmailRecepientList();
   static controllerList getControllerList();
    
-  T_CoolingTypeLimits  m_coolingTypeLimits;
-  T_BreachTypeStringMap m_breachTypeStringMap ;
-  emailRecepientList m_emailRecepientList;
-  controllerList m_controllerList;
+  static T_CoolingTypeLimits  m_coolingTypeLimits;
+  static T_BreachTypeStringMap m_breachTypeStringMap ;
+  static emailRecepientList m_emailRecepientList;
+  static controllerList m_controllerList;
 
 private:
   static void prepareCoolingTypeLimitsMap();
