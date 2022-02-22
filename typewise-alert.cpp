@@ -72,7 +72,7 @@ void TypeWiseAlert::updateAlerter(AlertTarget alertTarget, BreachType breachType
 }
 
 void TypeWiseAlert::sendToController(BreachType breachType) {
-   ControllerList::ierator controllerListIt =  m_controllerList.begin();
+   ControllerList::iterator controllerListIt =  m_controllerList.begin();
   for(; controllerListIt !=  m_controllerList.end(); ++controllerListIt)
   {
     printf("%x : %x\n", *controllerListIt, breachType);
@@ -87,7 +87,7 @@ void TypeWiseAlert::sendToEmail(BreachType breachType) {
     T_BreachTypeStringMap::iterator breachTypeStringMapIt = m_breachTypeStringMap.find(breachType);
     if(breachTypeStringMapIt != m_breachTypeStringMap.end())
     {
-      printf(breachTypeStringMapIt->second);
+      printf("%s\n",breachTypeStringMapIt->second.c_str());
     }
   }
 }
