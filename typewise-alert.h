@@ -21,7 +21,7 @@ public:
 // typedef ::std::map< InfoTypes::BreachType, string> T_BreachTypeStringMap;
 // typedef ::std::vector< ::std::string > EmailRecepientList;
 // typedef ::std::vector< unsigned short > ControllerList;
-typedef void (*fnptr)(BreachType);
+typedef void (*TypeWiseAlert::fnptr)(BreachType);
 typedef ::std::map< InfoTypes::AlertTarget , fnptr> T_AlerterMap;
 
 private:
