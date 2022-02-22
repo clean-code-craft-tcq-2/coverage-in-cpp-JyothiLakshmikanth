@@ -1,6 +1,7 @@
 #ifndef INFOTYPES_H
 #define INFOTYPES_H
-
+#include <iostream>
+#include <stdio.h>
 using namespace std;
 
 namespace InfoTypes
