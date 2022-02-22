@@ -26,8 +26,10 @@ TypeWiseAlert::~TypeWiseAlert()
 
 void TypeWiseAlert::prepareAlerterMap()
 {
-   m_alerterMap.insert( {TO_CONTROLLER, &TypeWiseAlert::sendToController });
-   m_alerterMap.insert({TO_EMAIL, &TypeWiseAlert::sendToEmail});
+    m_alerterMap[TO_CONTROLLER] = &sendToController;
+    m_alerterMap[TO_EMAIL] = &sendToEmail;
+//    m_alerterMap.insert( {TO_CONTROLLER, &TypeWiseAlert::sendToController });
+//    m_alerterMap.insert({TO_EMAIL, &TypeWiseAlert::sendToEmail});
 }
 
 Limits TypeWiseAlert::getTheLimitsForCoolingType(CoolingType coolingType)
