@@ -1,3 +1,4 @@
+#include "TypeWiseAlerterUtility.h"
 #include "typewise-alert.h"
 
 using namespace std;
@@ -34,7 +35,7 @@ void TypeWiseAlert::prepareAlerterMap()
 Limits TypeWiseAlert::getTheLimitsForCoolingType(CoolingType coolingType)
 {
   Limits limits;
-  TypeWiseAlerterUtility::T_CoolingTypeLimits::iterator coolingTypeLimitsIt = m_coolingTypeLimits.find(coolingType);
+  T_CoolingTypeLimits::iterator coolingTypeLimitsIt = m_coolingTypeLimits.find(coolingType);
   if(coolingTypeLimitsIt != m_coolingTypeLimits.end())
   {
     limits = coolingTypeLimitsIt->second;
@@ -74,7 +75,7 @@ void TypeWiseAlert::updateAlerter(AlertTarget alertTarget, BreachType breachType
 
 void TypeWiseAlert::sendToController(BreachType breachType)
 {
-   TypeWiseAlerterUtility::ControllerList::iterator controllerListIt =  m_controllerList.begin();
+   ControllerList::iterator controllerListIt =  m_controllerList.begin();
   for(; controllerListIt !=  m_controllerList.end(); ++controllerListIt)
   {
     printf("%x : %x\n", *controllerListIt, breachType);
@@ -83,11 +84,11 @@ void TypeWiseAlert::sendToController(BreachType breachType)
 
 void TypeWiseAlert::sendToEmail(BreachType breachType) 
 {
-  TypeWiseAlerterUtility::EmailRecepientList::iterator emailRecepientListIt = m_emailRecepientList.begin() ;
+  EmailRecepientList::iterator emailRecepientListIt = m_emailRecepientList.begin() ;
   for(; emailRecepientListIt !=  m_emailRecepientList.end(); ++emailRecepientListIt)
   {
     ::std::string recepient = *emailRecepientListIt;
-   TypeWiseAlerterUtility::T_BreachTypeStringMap::iterator breachTypeStringMapIt = m_breachTypeStringMap.find(breachType);
+   T_BreachTypeStringMap::iterator breachTypeStringMapIt = m_breachTypeStringMap.find(breachType);
     if(breachTypeStringMapIt != m_breachTypeStringMap.end())
     {
       printf("%s\n",breachTypeStringMapIt->second.c_str());
