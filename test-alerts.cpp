@@ -23,10 +23,26 @@ TEST_CASE("checkAndAlert")
   typeWiseAlert.checkAndAlert(TO_CONTROLLER, batteryChar, 45);
 }
 
-TEST_CASE("getTheLimitsForCoolingType")
+TEST_CASE("check_limits_for_PASSIVE_COOLING")
 {
   Limits limits;
   limits = typeWiseAlert.getTheLimitsForCoolingType(PASSIVE_COOLING);
   REQUIRE(limits.getLowerLimit() == 0.0);
   REQUIRE(limits.getUpperLimit() == 35.0);
+}
+
+TEST_CASE("check_limits_for_HI_ACTIVE_COOLING")
+{
+  Limits limits;
+  limits = typeWiseAlert.getTheLimitsForCoolingType(HI_ACTIVE_COOLING);
+  REQUIRE(limits.getLowerLimit() == 0.0);
+  REQUIRE(limits.getUpperLimit() == 45.0);
+}
+
+TEST_CASE("check_limits_for_MED_ACTIVE_COOLING")
+{
+  Limits limits;
+  limits = typeWiseAlert.getTheLimitsForCoolingType(MED_ACTIVE_COOLING);
+  REQUIRE(limits.getLowerLimit() == 0.0);
+  REQUIRE(limits.getUpperLimit() == 40.0);
 }
