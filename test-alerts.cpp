@@ -4,5 +4,6 @@
 #include "typewise-alert.h"
 
 TEST_CASE("infers the breach according to limits") {
- // REQUIRE(inferBreach(12, 20, 30) == TOO_LOW);
+ TypeWiseAlert typeWiseAlert;
+  REQUIRE(typeWiseAlert.inferBreach(12, 20, 30) == TOO_LOW);
 }
