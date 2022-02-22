@@ -32,7 +32,7 @@ void TypeWiseAlert::prepareAlerterMap()
 
 Limits TypeWiseAlert::getTheLimitsForCoolingType(CoolingType coolingType)
 {
-  Limits limits;
+  Limits limits(0.0,0.0);
   T_CoolingTypeLimits::iterator coolingTypeLimitsIt = m_coolingTypeLimits.find(coolingType);
   if(coolingTypeLimitsIt != m_coolingTypeLimits.end())
   {
