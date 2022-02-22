@@ -67,8 +67,7 @@ void TypeWiseAlert::updateAlerter(AlertTarget alertTarget, BreachType breachType
   T_AlerterMap::iterator alerterMapIt = m_alerterMap.find(alertTarget);
   if(alerterMapIt != m_alerterMap.end())
   {
-    void(*fnptr)(BreachType) ptr = &alerterMapIt->second;
-    ptr(breachType);
+     (alerterMapIt->second)(breachType);
   }
 }
 
