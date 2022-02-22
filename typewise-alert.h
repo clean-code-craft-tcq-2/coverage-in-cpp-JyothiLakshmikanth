@@ -18,8 +18,8 @@ public:
       AlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC);
 typedef ::std::map< CoolingType, Limits> T_CoolingTypeLimits;
 typedef ::std::map< InfoTypes::BreachType, string> T_BreachTypeStringMap;
-::std::vector< const char* > emailRecepientList;
-::std::vector< const unsigned short> controllerList;
+::std::vector< const char* > EmailRecepientList;
+::std::vector< const unsigned short> ControllerList;
 typedef ::std::map< InfoTypes::AlertTarget , void(*fnptr)(BreachType)> T_AlerterMap;
 private:
   BreachType inferBreach(double value, double lowerLimit, double upperLimit);
@@ -31,8 +31,8 @@ private:
   
     T_CoolingTypeLimits m_coolingTypeLimits;
     T_BreachTypeStringMap m_breachTypeStringMap;
-    emailRecepientList m_emailRecepientList ;
-    controllerList m_controllerList;
+    EmailRecepientList m_emailRecepientList ;
+    ControllerList m_controllerList;
     T_AlerterMap m_alerterMap;
 };
 #endif
