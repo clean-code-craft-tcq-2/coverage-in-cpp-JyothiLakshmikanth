@@ -23,7 +23,7 @@ public:
 private:
   static T_CoolingTypeLimits prepareCoolingTypeLimitsMap();
   static T_BreachTypeStringMap prepareBreachTypeStringMap();
-  static EmailRecepientList prepareEmailRecepient();
+  static EmailRecepientList prepareEmailRecepientList();
   static ControllerList prepareControllerList();
 
 };
@@ -46,7 +46,7 @@ TypeWiseAlerterUtility::T_BreachTypeStringMap TypeWiseAlerterUtility::prepareBre
    return breachTypeStringMap;
 }
 
-TypeWiseAlerterUtility::EmailRecepientList TypeWiseAlerterUtility::prepareEmailRecepient();
+TypeWiseAlerterUtility::EmailRecepientList TypeWiseAlerterUtility::prepareEmailRecepientList()
 {
    TypeWiseAlerterUtility::EmailRecepientList emailRecepientList;
   emailRecepientList.push_bach("a.b@c.com");
