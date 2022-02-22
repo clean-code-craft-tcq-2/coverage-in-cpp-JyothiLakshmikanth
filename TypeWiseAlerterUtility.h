@@ -28,54 +28,54 @@ private:
 
 };
 
-T_CoolingTypeLimits TypeWiseAlerterUtility::prepareCoolingTypeLimitsMap()
+TypeWiseAlerterUtility::T_CoolingTypeLimits TypeWiseAlerterUtility::prepareCoolingTypeLimitsMap()
 {
-   T_CoolingTypeLimits coolingTypeLimits;
+   TypeWiseAlerterUtility::T_CoolingTypeLimits coolingTypeLimits;
     coolingTypeLimits.insert({InfoTypes::PASSIVE_COOLING , 0.0, 35.0});
     coolingTypeLimits.insert({InfoTypes::HI_ACTIVE_COOLING , 0.0, 45.0});
     coolingTypeLimits.insert({InfoTypes::MED_ACTIVE_COOLING , 0.0, 40.0});
    return coolingTypeLimits;
 }
 
-T_BreachTypeStringMap TypeWiseAlerterUtility::prepareBreachTypeStringMap()
+TypeWiseAlerterUtility::T_BreachTypeStringMap TypeWiseAlerterUtility::prepareBreachTypeStringMap()
 {
-   T_BreachTypeStringMap breachTypeStringMap;
+   TypeWiseAlerterUtility::T_BreachTypeStringMap breachTypeStringMap;
     breachTypeStringMap.insert({InfoTypes::TOO_LOW, "Hi, the temperature is too low"});
     breachTypeStringMap.insert({InfoTypes::TOO_HIGH, "Hi, the temperature is too high"});
     breachTypeStringMap.insert({InfoTypes::NORMAL, "Hi, the temperature is NORMAL"});
    return breachTypeStringMap;
 }
 
-EmailRecepientList TypeWiseAlerterUtility::prepareEmailRecepient();
+TypeWiseAlerterUtility::EmailRecepientList TypeWiseAlerterUtility::prepareEmailRecepient();
 {
-   EmailRecepientList emailRecepientList;
+   TypeWiseAlerterUtility::EmailRecepientList emailRecepientList;
   emailRecepientList.push_bach("a.b@c.com");
    return emailRecepientList;
 }
 
-ControllerList TypeWiseAlerterUtility::prepareControllerList()
+TypeWiseAlerterUtility::ControllerList TypeWiseAlerterUtility::prepareControllerList()
 {
-   ControllerList controllerList;
+   TypeWiseAlerterUtility::ControllerList controllerList;
   controllerList.push_back(0xfeed);
    return controllerList;
 }
 
-void TypeWiseAlerterUtility::getCoolingTypeLimitsMap(T_CoolingTypeLimits& coolingTypeLimits)
+void TypeWiseAlerterUtility::getCoolingTypeLimitsMap(TypeWiseAlerterUtility::T_CoolingTypeLimits& coolingTypeLimits)
 {
    coolingTypeLimits = TypeWiseAlerterUtility::prepareCoolingTypeLimitsMap();
 }
 
-void TypeWiseAlerterUtility::getBreachTypeStringMap(T_BreachTypeStringMap& breachTypeStringMap)
+void TypeWiseAlerterUtility::getBreachTypeStringMap(TypeWiseAlerterUtility::T_BreachTypeStringMap& breachTypeStringMap)
 {
   breachTypeStringMap = TypeWiseAlerterUtility::prepareBreachTypeStringMap();
 }
 
-void TypeWiseAlerterUtility::getEmailRecepientList(EmailRecepientList& emailRecepientList)
+void TypeWiseAlerterUtility::getEmailRecepientList(TypeWiseAlerterUtility::EmailRecepientList& emailRecepientList)
 {
   emailRecepientList = TypeWiseAlerterUtility::prepareEmailRecepientList();
 }
 
-void TypeWiseAlerterUtility::getControllerList(ControllerList& controllerList)
+void TypeWiseAlerterUtility::getControllerList(TypeWiseAlerterUtility::ControllerList& controllerList)
 {
   controllerList = TypeWiseAlerterUtility::prepareControllerList();
 }
