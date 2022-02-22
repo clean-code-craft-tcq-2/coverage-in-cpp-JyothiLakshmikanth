@@ -7,6 +7,10 @@ using namespace InfoTypes;
 
 TEST_CASE("infers the breach according to limits") {
   TypeWiseAlert typeWiseAlert;
-  Limits limits(20, 30);
+  Limits low_limits(20, 30);
   REQUIRE(typeWiseAlert.inferBreach(12, limits) == TOO_LOW);
+  Limits high_limits(20, 45);
+  REQUIRE(typeWiseAlert.inferBreach(50, limits) == TOO_HIGH);
+  Limits normal_limits(20, 45);
+  REQUIRE(typeWiseAlert.inferBreach(30, limits) == TOO_HIGH);
 }
