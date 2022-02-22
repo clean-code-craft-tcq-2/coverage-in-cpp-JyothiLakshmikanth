@@ -72,7 +72,8 @@ void TypeWiseAlert::updateAlerter(AlertTarget alertTarget, BreachType breachType
   }
 }
 
-void TypeWiseAlert::sendToController(BreachType breachType) {
+void TypeWiseAlert::sendToController(BreachType breachType)
+{
    ControllerList::iterator controllerListIt =  m_controllerList.begin();
   for(; controllerListIt !=  m_controllerList.end(); ++controllerListIt)
   {
@@ -80,7 +81,8 @@ void TypeWiseAlert::sendToController(BreachType breachType) {
   }
 }
 
-void TypeWiseAlert::sendToEmail(BreachType breachType) {
+void TypeWiseAlert::sendToEmail(BreachType breachType) 
+{
   EmailRecepientList::iterator emailRecepientListIt = m_emailRecepientList.begin() ;
   for(; emailRecepientListIt !=  m_emailRecepientList.end(); ++emailRecepientListIt)
   {
