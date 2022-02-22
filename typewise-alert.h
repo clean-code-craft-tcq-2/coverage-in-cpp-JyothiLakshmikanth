@@ -5,9 +5,7 @@
 #include <iostream>
 #include <stdio.h>
 
-// #include "TypeWiseAlerterUtility.h"
-
-class TypeWiseAlerterUtility;
+#include "TypeWiseAlerterUtility.h"
 
 using namespace std;
 using namespace InfoTypes;
