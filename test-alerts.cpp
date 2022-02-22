@@ -3,6 +3,8 @@
 #include "test/catch.hpp"
 #include "typewise-alert.h"
 
+using namespace InfoTypes;
+
 TEST_CASE("infers the breach according to limits") {
  TypeWiseAlert typeWiseAlert;
  Limits limits(20, 30);
