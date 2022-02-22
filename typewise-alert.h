@@ -24,7 +24,7 @@ typedef void (*fnptr)(BreachType);
 typedef ::std::map< InfoTypes::AlertTarget , fnptr> T_AlerterMap;
 
 private:
-  BreachType inferBreach(double value, double lowerLimit, double upperLimit);
+  BreachType inferBreach(double value,Limits limits);
   BreachType classifyTemperatureBreach(CoolingType coolingType, double temperatureInC);
   void sendToController(BreachType breachType);
   void sendToEmail(BreachType breachType);
