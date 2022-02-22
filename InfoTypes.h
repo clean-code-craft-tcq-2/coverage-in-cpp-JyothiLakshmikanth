@@ -32,7 +32,7 @@ namespace InfoTypes
          char brand[48];
     } BatteryCharacter;
 
-    struct Limits
+    typedef struct 
     {
         Limits():lowerLimit(0.0),upperLimit(0.0){}
         Limits(double lower, double upper):lowerLimit(lower),upperLimit(upper){}
@@ -47,6 +47,6 @@ namespace InfoTypes
        private:
         double lowerLimit;
         double upperLimit;
-    };
+    }Limits;
 }
 #endif
