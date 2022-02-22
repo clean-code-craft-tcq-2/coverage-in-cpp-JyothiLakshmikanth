@@ -16,11 +16,14 @@ public:
 
   void checkAndAlert(
       AlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC);
+ 
 typedef ::std::map< CoolingType, Limits> T_CoolingTypeLimits;
 typedef ::std::map< InfoTypes::BreachType, string> T_BreachTypeStringMap;
 ::std::vector< const char* > EmailRecepientList;
 ::std::vector< const unsigned short> ControllerList;
-typedef ::std::map< InfoTypes::AlertTarget , void(*fnptr)(BreachType)> T_AlerterMap;
+typedef void (*fnptr)(BreachType);
+typedef ::std::map< InfoTypes::AlertTarget , fnptr> T_AlerterMap;
+
 private:
   BreachType inferBreach(double value, double lowerLimit, double upperLimit);
   BreachType classifyTemperatureBreach(CoolingType coolingType, double temperatureInC);
@@ -29,10 +32,10 @@ private:
   void updateAlerter(AlertTarget alertTarget, BreachType breachType);
   void prepareAlerterMap();
   
-    T_CoolingTypeLimits m_coolingTypeLimits;
-    T_BreachTypeStringMap m_breachTypeStringMap;
-    EmailRecepientList m_emailRecepientList ;
-    ControllerList m_controllerList;
-    T_AlerterMap m_alerterMap;
+    T_CoolingTypeLimits      m_coolingTypeLimits;
+    T_BreachTypeStringMap    m_breachTypeStringMap;
+    EmailRecepientList       m_emailRecepientList ;
+    ControllerList           m_controllerList;
+    T_AlerterMap             m_alerterMap;
 };
 #endif
