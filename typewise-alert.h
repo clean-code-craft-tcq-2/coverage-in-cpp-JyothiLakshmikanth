@@ -1,8 +1,8 @@
 #pragma once
 #ifndef TYPEWISEALERT_H
 #define TYPEWISEALERT_H
-#include <map>
-#include <vector>
+#include <iostream>
+#include <stdio.h>
 #include "TypeWiseAlerterUtility.h"
 
 using namespace std;
