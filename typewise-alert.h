@@ -38,7 +38,98 @@ private:
     TypeWiseAlerterUtility::T_BreachTypeStringMap    m_breachTypeStringMap;
     TypeWiseAlerterUtility::EmailRecepientList       m_emailRecepientList ;
     TypeWiseAlerterUtility::ControllerList           m_controllerList;
-    T_AlerterMap             m_alerterMap;
+    T_AlerterMap                                     m_alerterMap;
 };
 
+TypeWiseAlert::TypeWiseAlert()
+{
+    update();
+    prepareAlerterMap();
+};
+
+TypeWiseAlert::~TypeWiseAlert()
+{
+    m_coolingTypeLimits.clear();
+    m_breachTypeStringMap.clear();
+    m_emailRecepientList.clear();
+    m_controllerList.clear();
+};
+
+void TypeWiseAlert::update()
+{
+    TypeWiseAlerterUtility::getCoolingTypeLimitsMap(m_coolingTypeLimits);
+    TypeWiseAlerterUtility::getBreachTypeStringMap(m_breachTypeStringMap);
+    TypeWiseAlerterUtility::getEmailRecepientList(m_emailRecepientList);
+    TypeWiseAlerterUtility::getControllerList(m_controllerList);
+}
+
+void TypeWiseAlert::prepareAlerterMap()
+{
+    m_alerterMap[TO_CONTROLLER] = &TypeWiseAlert::sendToController;
+    m_alerterMap[TO_EMAIL] = &TypeWiseAlert::sendToEmail;
+}
+
+Limits TypeWiseAlert::getTheLimitsForCoolingType(CoolingType coolingType)
+{
+  Limits limits;
+  TypeWiseAlerterUtility::T_CoolingTypeLimits::iterator coolingTypeLimitsIt = m_coolingTypeLimits.find(coolingType);
+  if(coolingTypeLimitsIt != m_coolingTypeLimits.end())
+  {
+    limits = coolingTypeLimitsIt->second;
+  }
+  return limits;
+}
+
+BreachType TypeWiseAlert::inferBreach(double value, Limits limits) {
+  if(value < limits.getLowerLimit()) {
+    return TOO_LOW;
+  }
+  if(value > limits.getUpperLimit()) {
+    return TOO_HIGH;
+  }
+  return NORMAL;
+}
+
+BreachType TypeWiseAlert::classifyTemperatureBreach( CoolingType coolingType, double temperatureInC)
+{
+  return inferBreach(temperatureInC, getTheLimitsForCoolingType(coolingType));
+}
+
+void TypeWiseAlert::checkAndAlert( AlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC)
+{
+  BreachType breachType = classifyTemperatureBreach(batteryChar.coolingType, temperatureInC);
+  updateAlerter(alertTarget, breachType);
+}
+
+void TypeWiseAlert::updateAlerter(AlertTarget alertTarget, BreachType breachType)
+{
+  T_AlerterMap::iterator alerterMapIt = m_alerterMap.find(alertTarget);
+  if(alerterMapIt != m_alerterMap.end())
+  {
+     (this->*(alerterMapIt->second))(breachType);
+  }
+}
+
+void TypeWiseAlert::sendToController(BreachType breachType)
+{
+   TypeWiseAlerterUtility::ControllerList::iterator controllerListIt =  m_controllerList.begin();
+  for(; controllerListIt !=  m_controllerList.end(); ++controllerListIt)
+  {
+    printf("%x : %x\n", *controllerListIt, breachType);
+  }
+}
+
+void TypeWiseAlert::sendToEmail(BreachType breachType) 
+{
+  TypeWiseAlerterUtility::EmailRecepientList::iterator emailRecepientListIt = m_emailRecepientList.begin() ;
+  for(; emailRecepientListIt !=  m_emailRecepientList.end(); ++emailRecepientListIt)
+  {
+    ::std::string recepient = *emailRecepientListIt;
+   TypeWiseAlerterUtility::T_BreachTypeStringMap::iterator breachTypeStringMapIt = m_breachTypeStringMap.find(breachType);
+    if(breachTypeStringMapIt != m_breachTypeStringMap.end())
+    {
+      printf("%s\n",breachTypeStringMapIt->second.c_str());
+    }
+  }
+}
 #endif
