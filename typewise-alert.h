@@ -29,7 +29,7 @@ private:
   void sendToEmail(BreachType breachType);
   void updateAlerter(AlertTarget alertTarget, BreachType breachType);
   void prepareAlerterMap();
-  void update()
+  void update();
   Limits getTheLimitsForCoolingType(CoolingType coolingType);
   
     T_CoolingTypeLimits      m_coolingTypeLimits;
