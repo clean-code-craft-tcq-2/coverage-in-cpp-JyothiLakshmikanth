@@ -9,10 +9,10 @@ using namespace InfoTypes;
 
 TypeWiseAlert::TypeWiseAlert()
 {
-    m_coolingTypeLimits = TypeWiseAlerterUtility::getCoolingTypeLimitsMap();
-    m_breachTypeStringMap = TypeWiseAlerterUtility::getBreachTypeStringMap();
-    m_emailRecepientList = TypeWiseAlerterUtility::getEmailRecepientList();
-    m_controllerList = TypeWiseAlerterUtility::getControllerList();
+    TypeWiseAlerterUtility::getCoolingTypeLimitsMap(m_coolingTypeLimits);
+    TypeWiseAlerterUtility::getBreachTypeStringMap(m_breachTypeStringMap);
+    TypeWiseAlerterUtility::getEmailRecepientList(m_emailRecepientList);
+    TypeWiseAlerterUtility::getControllerList(m_controllerList);
     prepareAlerterMap();
 };
 
