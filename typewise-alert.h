@@ -5,10 +5,7 @@
 #include <iostream>
 #include <stdio.h>
 
-// #include "TypeWiseAlerterUtility.h"
 #include "InfoTypes.h"
-
-class TypeWiseAlerterUtility;
 
 using namespace std;
 using namespace InfoTypes;
@@ -22,6 +19,10 @@ public:
   void checkAndAlert(
       AlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC);
 
+     typedef ::std::map< CoolingType, Limits> T_CoolingTypeLimits;
+   typedef ::std::map< InfoTypes::BreachType, string> T_BreachTypeStringMap;
+   typedef ::std::vector< ::std::string > EmailRecepientList;
+   typedef ::std::vector< unsigned short> ControllerList;
 typedef void (TypeWiseAlert::*fnptr)(BreachType);
 typedef ::std::map< InfoTypes::AlertTarget , fnptr> T_AlerterMap;
 
@@ -35,10 +36,10 @@ private:
   void update();
   Limits getTheLimitsForCoolingType(CoolingType coolingType);
   
-    TypeWiseAlerterUtility::T_CoolingTypeLimits      m_coolingTypeLimits;
-    TypeWiseAlerterUtility::T_BreachTypeStringMap    m_breachTypeStringMap;
-    TypeWiseAlerterUtility::EmailRecepientList       m_emailRecepientList ;
-    TypeWiseAlerterUtility::ControllerList           m_controllerList;
+    T_CoolingTypeLimits      m_coolingTypeLimits;
+    T_BreachTypeStringMap    m_breachTypeStringMap;
+    EmailRecepientList       m_emailRecepientList ;
+    ControllerList           m_controllerList;
     T_AlerterMap             m_alerterMap;
 };
 
