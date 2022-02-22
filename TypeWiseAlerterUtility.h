@@ -1,7 +1,6 @@
 #ifndef TYPEWISEALERTERUTILITY_H
 #define TYPEWISEALERTERUTILITY_H
-#include <iostream>
-#include <stdio.h>
+
 #include <map>
 #include <vector>
 #include "InfoTypes.h"
