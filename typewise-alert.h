@@ -6,11 +6,11 @@
 #include <stdio.h>
 
 #include "TypeWiseAlerterUtility.h"
-
+class TypeWiseAlerterUtility;
 using namespace std;
 using namespace InfoTypes;
 
-class TypeWiseAlert : public TypeWiseAlerterUtility
+class TypeWiseAlert /*: public TypeWiseAlerterUtility*/
 {
 public:
   TypeWiseAlert();
