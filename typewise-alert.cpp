@@ -17,7 +17,7 @@ TypeWiseAlert::~TypeWiseAlert()
     m_controllerList.clear();
 };
 
-void update()
+void TypeWiseAlert::update()
 {
     TypeWiseAlerterUtility::getCoolingTypeLimitsMap(m_coolingTypeLimits);
     TypeWiseAlerterUtility::getBreachTypeStringMap(m_breachTypeStringMap);
