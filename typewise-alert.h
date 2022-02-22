@@ -18,8 +18,8 @@ public:
  
 typedef ::std::map< CoolingType, Limits> T_CoolingTypeLimits;
 typedef ::std::map< InfoTypes::BreachType, string> T_BreachTypeStringMap;
-::std::vector< ::std::string > EmailRecepientList;
-::std::vector< unsigned short > ControllerList;
+typedef ::std::vector< ::std::string > EmailRecepientList;
+typedef ::std::vector< unsigned short > ControllerList;
 typedef void (*fnptr)(BreachType);
 typedef ::std::map< InfoTypes::AlertTarget , fnptr> T_AlerterMap;
 
