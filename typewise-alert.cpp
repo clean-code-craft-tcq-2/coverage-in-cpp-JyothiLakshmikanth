@@ -79,7 +79,7 @@ void TypeWiseAlert::sendToEmail(BreachType breachType) {
   EmailRecepientList::iterator emailRecepientListIt = m_emailRecepientList.begin() ;
   for(; emailRecepientListIt !=  m_emailRecepientList.end(); ++emailRecepientListIt)
   {
-    const char* recepient = *emailRecepientListIt;
+    ::std::string recepient = *emailRecepientListIt;
     T_BreachTypeStringMap::iterator breachTypeStringMapIt = m_breachTypeStringMap.find(breachType);
     if(breachTypeStringMapIt != m_breachTypeStringMap.end())
     {
