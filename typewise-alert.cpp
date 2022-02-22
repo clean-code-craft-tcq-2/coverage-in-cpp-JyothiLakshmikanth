@@ -73,7 +73,7 @@ void TypeWiseAlert::updateAlerter(AlertTarget alertTarget, BreachType breachType
 }
 
 void TypeWiseAlert::sendToController(BreachType breachType) {
-   controllerList::ierator controllerListIt =  m_controllerList.begin();
+   ControllerList::ierator controllerListIt =  m_controllerList.begin();
   for(; controllerListIt !=  m_controllerList.end(); ++controllerListIt)
   {
     printf("%x : %x\n", *controllerListIt, breachType);
@@ -81,7 +81,7 @@ void TypeWiseAlert::sendToController(BreachType breachType) {
 }
 
 void TypeWiseAlert::sendToEmail(BreachType breachType) {
-  emailRecepientList::iterator emailRecepientListIt = m_emailRecepientList.begin() ;
+  EmailRecepientList::iterator emailRecepientListIt = m_emailRecepientList.begin() ;
   for(; emailRecepientListIt !=  m_emailRecepientList.end(); ++emailRecepientListIt)
   {
     const char* recepient = *emailRecepientListIt;
