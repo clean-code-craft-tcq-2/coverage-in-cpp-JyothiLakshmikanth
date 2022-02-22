@@ -12,8 +12,8 @@ class TypeWiseAlerterUtility
 public:
    typedef ::std::map< CoolingType, Limits> T_CoolingTypeLimits;
    typedef ::std::map< InfoTypes::BreachType, string> T_BreachTypeStringMap;
-   typedef ::std::vector< const char* > EmailRecepientList;
-   typedef ::std::vector< const unsigned short> ControllerList;
+   typedef ::std::vector< ::std::string > EmailRecepientList;
+   typedef ::std::vector< unsigned short> ControllerList;
 
   static void getCoolingTypeLimitsMap(T_CoolingTypeLimits& coolingTypeLimits);
   static void getBreachTypeStringMap(T_BreachTypeStringMap& breachTypeStringMap);
