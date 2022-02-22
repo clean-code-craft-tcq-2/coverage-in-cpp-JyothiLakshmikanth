@@ -49,7 +49,7 @@ TypeWiseAlerterUtility::T_BreachTypeStringMap TypeWiseAlerterUtility::prepareBre
 TypeWiseAlerterUtility::EmailRecepientList TypeWiseAlerterUtility::prepareEmailRecepientList()
 {
    TypeWiseAlerterUtility::EmailRecepientList emailRecepientList;
-  emailRecepientList.push_bach("a.b@c.com");
+  emailRecepientList.push_back("a.b@c.com");
    return emailRecepientList;
 }
 
