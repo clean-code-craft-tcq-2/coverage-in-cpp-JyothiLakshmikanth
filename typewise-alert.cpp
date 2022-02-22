@@ -5,10 +5,7 @@ using namespace InfoTypes;
 
 TypeWiseAlert::TypeWiseAlert()
 {
-    TypeWiseAlerterUtility::getCoolingTypeLimitsMap(m_coolingTypeLimits);
-    TypeWiseAlerterUtility::getBreachTypeStringMap(m_breachTypeStringMap);
-    TypeWiseAlerterUtility::getEmailRecepientList(m_emailRecepientList);
-    TypeWiseAlerterUtility::getControllerList(m_controllerList);
+    update();
     prepareAlerterMap();
 };
 
@@ -20,12 +17,18 @@ TypeWiseAlert::~TypeWiseAlert()
     m_controllerList.clear();
 };
 
+void update()
+{
+    TypeWiseAlerterUtility::getCoolingTypeLimitsMap(m_coolingTypeLimits);
+    TypeWiseAlerterUtility::getBreachTypeStringMap(m_breachTypeStringMap);
+    TypeWiseAlerterUtility::getEmailRecepientList(m_emailRecepientList);
+    TypeWiseAlerterUtility::getControllerList(m_controllerList);
+}
+
 void TypeWiseAlert::prepareAlerterMap()
 {
     m_alerterMap[TO_CONTROLLER] = &TypeWiseAlert::sendToController;
     m_alerterMap[TO_EMAIL] = &TypeWiseAlert::sendToEmail;
-//    m_alerterMap.insert( {TO_CONTROLLER, &TypeWiseAlert::sendToController });
-//    m_alerterMap.insert({TO_EMAIL, &TypeWiseAlert::sendToEmail});
 }
 
 Limits TypeWiseAlert::getTheLimitsForCoolingType(CoolingType coolingType)
