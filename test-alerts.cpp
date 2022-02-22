@@ -6,7 +6,7 @@
 using namespace InfoTypes;
 
 TEST_CASE("infers the breach according to limits") {
- TypeWiseAlert typeWiseAlert;
- Limits limits(20, 30);
+  TypeWiseAlert typeWiseAlert;
+  InfoTypes::Limits limits(20, 30);
   REQUIRE(typeWiseAlert.inferBreach(12, limits) == TOO_LOW);
 }
