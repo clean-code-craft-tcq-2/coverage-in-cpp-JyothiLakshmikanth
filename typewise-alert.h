@@ -3,7 +3,6 @@
 #define TYPEWISEALERT_H
 
 #include "TypeWiseAlerterUtility.h"
-#include "InfoTypes.h"
 
 using namespace std;
 using namespace InfoTypes;
@@ -19,8 +18,8 @@ public:
  
 typedef ::std::map< CoolingType, Limits> T_CoolingTypeLimits;
 typedef ::std::map< InfoTypes::BreachType, string> T_BreachTypeStringMap;
-::std::vector< const char* > EmailRecepientList;
-::std::vector< const unsigned short> ControllerList;
+::std::vector< ::std::string > EmailRecepientList;
+::std::vector< unsigned short > ControllerList;
 typedef void (*fnptr)(BreachType);
 typedef ::std::map< InfoTypes::AlertTarget , fnptr> T_AlerterMap;
 
