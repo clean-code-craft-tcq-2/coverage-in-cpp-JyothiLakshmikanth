@@ -38,10 +38,10 @@ Limits TypeWiseAlert::getTheLimitsForCoolingType(CoolingType coolingType)
 }
 
 BreachType TypeWiseAlert::inferBreach(double value, Limits limits) {
-  if(value < limits.lowerLimit) {
+  if(value < limits.getLowerLimit()) {
     return TOO_LOW;
   }
-  if(value > limits.upperLimit) {
+  if(value > limits.getUpperLimit()) {
     return TOO_HIGH;
   }
   return NORMAL;
