@@ -5,5 +5,6 @@
 
 TEST_CASE("infers the breach according to limits") {
  TypeWiseAlert typeWiseAlert;
-  REQUIRE(typeWiseAlert.inferBreach(12, 20, 30) == TOO_LOW);
+ Limits limits(20, 30);
+  REQUIRE(typeWiseAlert.inferBreach(12, limits) == TOO_LOW);
 }
