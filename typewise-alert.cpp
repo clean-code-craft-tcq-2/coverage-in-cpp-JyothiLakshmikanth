@@ -18,10 +18,6 @@ TypeWiseAlert::TypeWiseAlert()
 
 TypeWiseAlert::~TypeWiseAlert()
 {
-      m_coolingTypeLimits.clear;
-      m_breachTypeStringMap.clear;
-      m_emailRecepientList.clear;
-      m_controllerList.clear;
 };
 
 void TypeWiseAlert::prepareAlerterMap()
