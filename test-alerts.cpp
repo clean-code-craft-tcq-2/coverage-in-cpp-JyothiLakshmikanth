@@ -50,20 +50,20 @@ TEST_CASE("check_limits_for_MED_ACTIVE_COOLING")
 TEST_CASE("check_classifyTemperatureBreach_ForPASSIVE_COOLINGType")
 {
   REQUIRE(typeWiseAlert.classifyTemperatureBreach(PASSIVE_COOLING,40) == TOO_HIGH);
-  REQUIRE(typeWiseAlert.classifyTemperatureBreach(PASSIVE_COOLING,5) == TOO_LOW);
+  REQUIRE(typeWiseAlert.classifyTemperatureBreach(PASSIVE_COOLING,-1) == TOO_LOW);
   REQUIRE(typeWiseAlert.classifyTemperatureBreach(PASSIVE_COOLING,25) == NORMAL);
 }
 
 TEST_CASE("check_classifyTemperatureBreach_ForHI_ACTIVE_COOLINGType")
 {
   REQUIRE(typeWiseAlert.classifyTemperatureBreach(HI_ACTIVE_COOLING,50) == TOO_HIGH);
-  REQUIRE(typeWiseAlert.classifyTemperatureBreach(HI_ACTIVE_COOLING,5) == TOO_LOW);
+  REQUIRE(typeWiseAlert.classifyTemperatureBreach(HI_ACTIVE_COOLING,-1) == TOO_LOW);
   REQUIRE(typeWiseAlert.classifyTemperatureBreach(HI_ACTIVE_COOLING,25) == NORMAL);
 }
 
 TEST_CASE("check_classifyTemperatureBreach_ForMED_ACTIVE_COOLINGType")
 {
   REQUIRE(typeWiseAlert.classifyTemperatureBreach(MED_ACTIVE_COOLING,45) == TOO_HIGH);
-  REQUIRE(typeWiseAlert.classifyTemperatureBreach(MED_ACTIVE_COOLING,5) == TOO_LOW);
+  REQUIRE(typeWiseAlert.classifyTemperatureBreach(MED_ACTIVE_COOLING,-1) == TOO_LOW);
   REQUIRE(typeWiseAlert.classifyTemperatureBreach(MED_ACTIVE_COOLING,25) == NORMAL);
 }
