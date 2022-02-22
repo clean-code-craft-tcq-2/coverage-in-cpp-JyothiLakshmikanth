@@ -19,11 +19,6 @@ public:
   static T_BreachTypeStringMap getBreachTypeStringMap();
   static emailRecepientList getEmailRecepientList();
   static controllerList getControllerList();
-   
-  static T_CoolingTypeLimits  m_coolingTypeLimits;
-  static T_BreachTypeStringMap m_breachTypeStringMap ;
-  static emailRecepientList m_emailRecepientList;
-  static controllerList m_controllerList;
 
 private:
   static void prepareCoolingTypeLimitsMap();
@@ -32,11 +27,6 @@ private:
   static void prepareControllerList();
 
 };
-
-TypeWiseAlerterUtility::m_coolingTypeLimits = TypeWiseAlerterUtility::prepareCoolingTypeLimitsMap();
-TypeWiseAlerterUtility::m_breachTypeStringMap = TypeWiseAlerterUtility::prepareBreachTypeStringMap();
-TypeWiseAlerterUtility::m_emailRecepientList = TypeWiseAlerterUtility::prepareEmailRecepientList();
-TypeWiseAlerterUtility::m_controllerList = TypeWiseAlerterUtility::prepareControllerList();
 
 void TypeWiseAlerterUtility::prepareCoolingTypeLimitsMap()
 {
@@ -64,21 +54,25 @@ void TypeWiseAlerterUtility::prepareControllerList()
 
 T_CoolingTypeLimits TypeWiseAlerterUtility::getCoolingTypeLimitsMap()
 {
-  return m_coolingTypeLimits;
+   T_CoolingTypeLimits  m_coolingTypeLimits = TypeWiseAlerterUtility::prepareCoolingTypeLimitsMap();
+   return m_coolingTypeLimits;
 }
 
 T_BreachTypeStringMap TypeWiseAlerterUtility::getBreachTypeStringMap()
 {
+   T_BreachTypeStringMap m_breachTypeStringMap = TypeWiseAlerterUtility::prepareBreachTypeStringMap();
   return m_breachTypeStringMap;
 }
 
 emailRecepientList TypeWiseAlerterUtility::getEmailRecepientList()
 {
+   emailRecepientList m_emailRecepientList = TypeWiseAlerterUtility::prepareEmailRecepientList();
   return m_emailRecepientList;
 }
 
 controllerList TypeWiseAlerterUtility::getControllerList()
 {
+  controllerList m_controllerList = TypeWiseAlerterUtility::prepareControllerList();
   return m_controllerList;
 }
 #endif
