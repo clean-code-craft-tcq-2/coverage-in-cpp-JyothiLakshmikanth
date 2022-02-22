@@ -6,11 +6,11 @@
 #include <stdio.h>
 
 #include "TypeWiseAlerterUtility.h"
-
+class TypeWiseAlerterUtility;
 using namespace std;
 using namespace InfoTypes;
 
-class TypeWiseAlert : public TypeWiseAlerterUtility
+class TypeWiseAlert
 {
 public:
   TypeWiseAlert();
@@ -32,10 +32,10 @@ private:
   void update();
   Limits getTheLimitsForCoolingType(CoolingType coolingType);
   
-    T_CoolingTypeLimits      m_coolingTypeLimits;
-    T_BreachTypeStringMap    m_breachTypeStringMap;
-    EmailRecepientList       m_emailRecepientList ;
-    ControllerList           m_controllerList;
+    TypeWiseAlerterUtility::T_CoolingTypeLimits      m_coolingTypeLimits;
+    TypeWiseAlerterUtility::T_BreachTypeStringMap    m_breachTypeStringMap;
+    TypeWiseAlerterUtility::EmailRecepientList       m_emailRecepientList ;
+    TypeWiseAlerterUtility::ControllerList           m_controllerList;
     T_AlerterMap             m_alerterMap;
 };
 
