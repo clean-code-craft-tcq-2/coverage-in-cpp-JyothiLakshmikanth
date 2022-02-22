@@ -33,7 +33,7 @@ namespace InfoTypes
 
     struct Limits
     {
-        Limits():lowerLimit(0.0),upperLimit(0.0)
+        Limits():lowerLimit(0.0),upperLimit(0.0){}
         Limits(double lower, double upper):lowerLimit(lower),upperLimit(upper){}
        double getLowerLimit()
        {
