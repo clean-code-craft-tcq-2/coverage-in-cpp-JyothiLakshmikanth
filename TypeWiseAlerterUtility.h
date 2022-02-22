@@ -31,9 +31,9 @@ private:
 TypeWiseAlerterUtility::T_CoolingTypeLimits TypeWiseAlerterUtility::prepareCoolingTypeLimitsMap()
 {
    TypeWiseAlerterUtility::T_CoolingTypeLimits coolingTypeLimits;
-    coolingTypeLimits.insert({InfoTypes::PASSIVE_COOLING , 0.0, 35.0});
-    coolingTypeLimits.insert({InfoTypes::HI_ACTIVE_COOLING , 0.0, 45.0});
-    coolingTypeLimits.insert({InfoTypes::MED_ACTIVE_COOLING , 0.0, 40.0});
+    coolingTypeLimits.insert({PASSIVE_COOLING , Limits(0.0, 35.0)});
+    coolingTypeLimits.insert({HI_ACTIVE_COOLING , Limits(0.0, 45.0)});
+    coolingTypeLimits.insert({MED_ACTIVE_COOLING , Limits(0.0, 40.0)});
    return coolingTypeLimits;
 }
 
