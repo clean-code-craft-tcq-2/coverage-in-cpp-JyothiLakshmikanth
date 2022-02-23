@@ -19,7 +19,7 @@ TypeWiseAlert::~TypeWiseAlert()
 
 void TypeWiseAlert::update()
 {
-    prepareControllerList();
+    prepareCoolingTypeLimitsMap();
     prepareBreachTypeStringMap();
     prepareEmailRecepientList();
     prepareControllerList();
