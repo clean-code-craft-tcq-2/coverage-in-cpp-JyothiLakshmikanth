@@ -24,32 +24,38 @@ TEST_CASE("checkAndAlert")
   typeWiseAlert.checkAndAlert(TO_CONTROLLER, batteryChar, 45);
 }
 
-TEST_CASE("check_limits_for_PASSIVE_COOLING")
+TEST_CASE("check_limits_for_different_cooling_Type")
 {
- prepareCoolingTypeLimitsMap();
+ typeWiseAlert.prepareCoolingTypeLimitsMap();
   Limits limits;
   limits = typeWiseAlert.getTheLimitsForCoolingType(PASSIVE_COOLING);
   REQUIRE(limits.getLowerLimit() == 0.0);
   REQUIRE(limits.getUpperLimit() == 35.0);
-}
-
-TEST_CASE("check_limits_for_HI_ACTIVE_COOLING")
-{
- prepareCoolingTypeLimitsMap();
-  Limits limits;
-  limits = typeWiseAlert.getTheLimitsForCoolingType(HI_ACTIVE_COOLING);
+   limits = typeWiseAlert.getTheLimitsForCoolingType(HI_ACTIVE_COOLING);
   REQUIRE(limits.getLowerLimit() == 0.0);
   REQUIRE(limits.getUpperLimit() == 45.0);
-}
-
-TEST_CASE("check_limits_for_MED_ACTIVE_COOLING")
-{
- prepareCoolingTypeLimitsMap();
-  Limits limits;
-  limits = typeWiseAlert.getTheLimitsForCoolingType(MED_ACTIVE_COOLING);
+   limits = typeWiseAlert.getTheLimitsForCoolingType(MED_ACTIVE_COOLING);
   REQUIRE(limits.getLowerLimit() == 0.0);
   REQUIRE(limits.getUpperLimit() == 40.0);
 }
+
+// TEST_CASE("check_limits_for_HI_ACTIVE_COOLING")
+// {
+//  prepareCoolingTypeLimitsMap();
+//   Limits limits;
+//   limits = typeWiseAlert.getTheLimitsForCoolingType(HI_ACTIVE_COOLING);
+//   REQUIRE(limits.getLowerLimit() == 0.0);
+//   REQUIRE(limits.getUpperLimit() == 45.0);
+// }
+
+// TEST_CASE("check_limits_for_MED_ACTIVE_COOLING")
+// {
+//  prepareCoolingTypeLimitsMap();
+//   Limits limits;
+//   limits = typeWiseAlert.getTheLimitsForCoolingType(MED_ACTIVE_COOLING);
+//   REQUIRE(limits.getLowerLimit() == 0.0);
+//   REQUIRE(limits.getUpperLimit() == 40.0);
+// }
 
 TEST_CASE("check_classifyTemperatureBreach_ForPASSIVE_COOLINGType")
 {
