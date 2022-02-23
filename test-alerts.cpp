@@ -26,6 +26,7 @@ TEST_CASE("checkAndAlert")
 
 TEST_CASE("check_limits_for_PASSIVE_COOLING")
 {
+ prepareCoolingTypeLimitsMap();
   Limits limits;
   limits = typeWiseAlert.getTheLimitsForCoolingType(PASSIVE_COOLING);
   REQUIRE(limits.getLowerLimit() == 0.0);
@@ -34,6 +35,7 @@ TEST_CASE("check_limits_for_PASSIVE_COOLING")
 
 TEST_CASE("check_limits_for_HI_ACTIVE_COOLING")
 {
+ prepareCoolingTypeLimitsMap();
   Limits limits;
   limits = typeWiseAlert.getTheLimitsForCoolingType(HI_ACTIVE_COOLING);
   REQUIRE(limits.getLowerLimit() == 0.0);
@@ -42,6 +44,7 @@ TEST_CASE("check_limits_for_HI_ACTIVE_COOLING")
 
 TEST_CASE("check_limits_for_MED_ACTIVE_COOLING")
 {
+ prepareCoolingTypeLimitsMap();
   Limits limits;
   limits = typeWiseAlert.getTheLimitsForCoolingType(MED_ACTIVE_COOLING);
   REQUIRE(limits.getLowerLimit() == 0.0);
