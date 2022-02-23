@@ -19,34 +19,34 @@ TypeWiseAlert::~TypeWiseAlert()
 
 void TypeWiseAlert::update()
 {
-    prepareControllerList(m_coolingTypeLimits);
-    prepareBreachTypeStringMap(m_breachTypeStringMap);
-    prepareEmailRecepientList(m_emailRecepientList);
-    prepareControllerList(m_controllerList);
+    prepareControllerList();
+    prepareBreachTypeStringMap();
+    prepareEmailRecepientList();
+    prepareControllerList();
 }
 
-void TypeWiseAlert::prepareCoolingTypeLimitsMap(T_CoolingTypeLimits& coolingTypeLinits)
+void TypeWiseAlert::prepareCoolingTypeLimitsMap()
 {
-    coolingTypeLimits.insert({PASSIVE_COOLING , Limits(0.0, 35.0)});
-    coolingTypeLimits.insert({HI_ACTIVE_COOLING , Limits(0.0, 45.0)});
-    coolingTypeLimits.insert({MED_ACTIVE_COOLING , Limits(0.0, 40.0)});
+    m_coolingTypeLimits.insert({PASSIVE_COOLING , Limits(0.0, 35.0)});
+    m_coolingTypeLimits.insert({HI_ACTIVE_COOLING , Limits(0.0, 45.0)});
+    m_coolingTypeLimits.insert({MED_ACTIVE_COOLING , Limits(0.0, 40.0)});
 }
 
-void TypeWiseAlert::prepareBreachTypeStringMap(T_BreachTypeStringMap& breachTypeStringMap)
+void TypeWiseAlert::prepareBreachTypeStringMap()
 {
-    breachTypeStringMap.insert({InfoTypes::TOO_LOW, "Hi, the temperature is too low"});
-    breachTypeStringMap.insert({InfoTypes::TOO_HIGH, "Hi, the temperature is too high"});
-    breachTypeStringMap.insert({InfoTypes::NORMAL, "Hi, the temperature is NORMAL"});
+    m_breachTypeStringMap.insert({InfoTypes::TOO_LOW, "Hi, the temperature is too low"});
+    m_breachTypeStringMap.insert({InfoTypes::TOO_HIGH, "Hi, the temperature is too high"});
+    m_breachTypeStringMap.insert({InfoTypes::NORMAL, "Hi, the temperature is NORMAL"});
 }
 
-void TypeWiseAlert::prepareEmailRecepientList(EmailRecepientList& emailRecepientList)
+void TypeWiseAlert::prepareEmailRecepientList()
 {
-  emailRecepientList.push_back("a.b@c.com");
+  m_emailRecepientList.push_back("a.b@c.com");
 }
 
-void TypeWiseAlert::prepareControllerList(ControllerList& controllerList)
+void TypeWiseAlert::prepareControllerList()
 {
-  controllerList.push_back(0xfeed);
+  m_controllerList.push_back(0xfeed);
 }
 
 void TypeWiseAlert::prepareAlerterMap()
