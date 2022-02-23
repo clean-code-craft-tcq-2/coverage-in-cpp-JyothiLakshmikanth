@@ -30,6 +30,10 @@ public:
 private:
   BreachType inferBreach(double value,Limits limits);
   BreachType classifyTemperatureBreach(CoolingType coolingType, double temperatureInC);
+  void prepareCoolingTypeLimitsMap(T_CoolingTypeLimits& coolingTypeLinits);
+  void prepareBreachTypeStringMap(T_BreachTypeStringMap& breachTypeStringMap);
+  void prepareEmailRecepientList(EmailRecepientList& emailRecepientList);
+  void prepareControllerList(ControllerList& controllerList);
   void sendToController(BreachType breachType);
   void sendToEmail(BreachType breachType);
   void updateAlerter(AlertTarget alertTarget, BreachType breachType);
