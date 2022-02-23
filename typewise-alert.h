@@ -17,9 +17,15 @@ class TypeWiseAlert
 public:
   TypeWiseAlert();
   ~TypeWiseAlert();
+  
+   typedef ::std::map< CoolingType, Limits> T_CoolingTypeLimits;
+   typedef ::std::map< InfoTypes::BreachType, string> T_BreachTypeStringMap;
+   typedef ::std::vector< ::std::string > EmailRecepientList;
+   typedef ::std::vector< unsigned short> ControllerList;
+   typedef void (TypeWiseAlert::*fnptr)(BreachType);
+   typedef ::std::map< InfoTypes::AlertTarget , fnptr> T_AlerterMap;
 
-  void checkAndAlert(
-      AlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC);
+  void checkAndAlert( AlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC);
 
 private:
   BreachType inferBreach(double value,Limits limits);
@@ -30,13 +36,6 @@ private:
   void prepareAlerterMap();
   void update();
   Limits getTheLimitsForCoolingType(CoolingType coolingType);
-
-   typedef ::std::map< CoolingType, Limits> T_CoolingTypeLimits;
-   typedef ::std::map< InfoTypes::BreachType, string> T_BreachTypeStringMap;
-   typedef ::std::vector< ::std::string > EmailRecepientList;
-   typedef ::std::vector< unsigned short> ControllerList;
-   typedef void (TypeWiseAlert::*fnptr)(BreachType);
-   typedef ::std::map< InfoTypes::AlertTarget , fnptr> T_AlerterMap;
 
     T_CoolingTypeLimits      m_coolingTypeLimits;
     T_BreachTypeStringMap    m_breachTypeStringMap;
