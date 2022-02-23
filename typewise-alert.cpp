@@ -1,5 +1,5 @@
-#include "TypeWiseAlerterUtility.h"
 #include "typewise-alert.h"
+#include "TypeWiseAlerterUtility.h"
 
 using namespace std;
 using namespace InfoTypes;
