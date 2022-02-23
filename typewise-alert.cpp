@@ -1,5 +1,4 @@
 #include "typewise-alert.h"
-#include "TypeWiseAlerterUtility.h"
 
 using namespace std;
 using namespace InfoTypes;
@@ -20,10 +19,34 @@ TypeWiseAlert::~TypeWiseAlert()
 
 void TypeWiseAlert::update()
 {
-    TypeWiseAlerterUtility::getCoolingTypeLimitsMap(m_coolingTypeLimits);
-    TypeWiseAlerterUtility::getBreachTypeStringMap(m_breachTypeStringMap);
-    TypeWiseAlerterUtility::getEmailRecepientList(m_emailRecepientList);
-    TypeWiseAlerterUtility::getControllerList(m_controllerList);
+    prepareControllerList(m_coolingTypeLimits);
+    prepareBreachTypeStringMap(m_breachTypeStringMap);
+    prepareEmailRecepientList(m_emailRecepientList);
+    prepareControllerList(m_controllerList);
+}
+
+void TypeWiseAlert::prepareCoolingTypeLimitsMap(T_CoolingTypeLimits& coolingTypeLinits)
+{
+    coolingTypeLimits.insert({PASSIVE_COOLING , Limits(0.0, 35.0)});
+    coolingTypeLimits.insert({HI_ACTIVE_COOLING , Limits(0.0, 45.0)});
+    coolingTypeLimits.insert({MED_ACTIVE_COOLING , Limits(0.0, 40.0)});
+}
+
+void TypeWiseAlert::prepareBreachTypeStringMap(T_BreachTypeStringMap& breachTypeStringMap)
+{
+    breachTypeStringMap.insert({InfoTypes::TOO_LOW, "Hi, the temperature is too low"});
+    breachTypeStringMap.insert({InfoTypes::TOO_HIGH, "Hi, the temperature is too high"});
+    breachTypeStringMap.insert({InfoTypes::NORMAL, "Hi, the temperature is NORMAL"});
+}
+
+void TypeWiseAlert::prepareEmailRecepientList(EmailRecepientList& emailRecepientList)
+{
+  emailRecepientList.push_back("a.b@c.com");
+}
+
+void TypeWiseAlert::prepareControllerList(ControllerList& controllerList)
+{
+  controllerList.push_back(0xfeed);
 }
 
 void TypeWiseAlert::prepareAlerterMap()
