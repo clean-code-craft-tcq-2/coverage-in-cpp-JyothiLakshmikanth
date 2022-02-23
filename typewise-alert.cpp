@@ -5,7 +5,7 @@ using namespace InfoTypes;
 
 TypeWiseAlert::TypeWiseAlert()
 {
-    update();
+    updateMaps();
     prepareAlerterMap();
 };
 
@@ -17,7 +17,7 @@ TypeWiseAlert::~TypeWiseAlert()
     m_controllerList.clear();
 };
 
-void TypeWiseAlert::update()
+void TypeWiseAlert::updateMaps()
 {
     prepareCoolingTypeLimitsMap();
     prepareBreachTypeStringMap();
