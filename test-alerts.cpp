@@ -6,15 +6,6 @@
 
 using namespace InfoTypes;
 TypeWiseAlert typeWiseAlert;
-class mock_class : public TypeWiseAlert
-{
-  public:
-  mock_class();
-  ~mock_class();
-  
-  MOCK_METHOD1(sendToController, void(BreachType));
-  MOCK_METHOD1(sendToEmail, void(BreachType));
-};
 
 TEST_CASE("infers the breach according to limits") {
 
