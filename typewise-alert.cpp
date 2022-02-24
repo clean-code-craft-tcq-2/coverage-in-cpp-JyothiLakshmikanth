@@ -114,15 +114,15 @@ Result TypeWiseAlert::sendToController(BreachType breachType)
 
 Result TypeWiseAlert::sendToEmail(BreachType breachType) 
 {
-         T_BreachTypeStringMap::iterator breachTypeStringMapIt = m_breachTypeStringMap.find(breachType);
-         if(breachTypeStringMapIt != m_breachTypeStringMap.end())
-         {
-             if(!m_emailRecepientList.empty())
-            {
-               sendEmailsToClients(breachTypeStringMapIt->second);
-                return SUCCESS;
-            }
-         }
+    T_BreachTypeStringMap::iterator breachTypeStringMapIt = m_breachTypeStringMap.find(breachType);
+    if(breachTypeStringMapIt != m_breachTypeStringMap.end())
+    {
+      if(!m_emailRecepientList.empty())
+      {
+        sendEmailsToClients(breachTypeStringMapIt->second);
+        return SUCCESS;
+      }
+    }
     return FAILURE;
 }
 
