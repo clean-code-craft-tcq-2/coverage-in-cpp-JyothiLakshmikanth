@@ -22,7 +22,7 @@ TEST_CASE("checkAndAlert")
   BatteryCharacter batteryChar;
   batteryChar.coolingType = PASSIVE_COOLING;
   REQUIRE(typeWiseAlert.checkAndAlert(TO_CONTROLLER, batteryChar, 45) == SUCCESS);
- REQUIRE(typeWiseAlert.checkAndAlert(TO_EMAIL, batteryChar, 45)== SUCCESS);
+  REQUIRE(typeWiseAlert.checkAndAlert(TO_EMAIL, batteryChar, 45)== SUCCESS);
 }
 
 TEST_CASE("checkAndAlert_If_No_Controllers_Available")
@@ -30,7 +30,21 @@ TEST_CASE("checkAndAlert_If_No_Controllers_Available")
    typeWiseAlert.m_controllerList.clear();
    BatteryCharacter batteryChar;
    batteryChar.coolingType = PASSIVE_COOLING;
-  REQUIRE(typeWiseAlert.checkAndAlert(TO_CONTROLLER, batteryChar, 45) == FAILURE);
+   REQUIRE(typeWiseAlert.checkAndAlert(TO_CONTROLLER, batteryChar, 45) == FAILURE);
+}
+
+TEST_CASE("checkAndAlert_If_No_EMAIL_Recepients_Available")
+{
+   typeWiseAlert.m_emailRecepientList.clear();
+   BatteryCharacter batteryChar;
+   batteryChar.coolingType = PASSIVE_COOLING;
+   REQUIRE(typeWiseAlert.checkAndAlert(TO_EMAIL, batteryChar, 45) == FAILURE);
+}
+
+TEST_CASE("sendToEmail_If_No_Breach_Value_Present_inMap")
+{
+   typeWiseAlert.m_breachTypeStringMap.clear();
+   REQUIRE(typeWiseAlert.sendToEmail(NORMAL) == FAILURE);
 }
 
 TEST_CASE("check_limits_for_different_cooling_Type")
@@ -39,10 +53,10 @@ TEST_CASE("check_limits_for_different_cooling_Type")
   limits = typeWiseAlert.getTheLimitsForCoolingType(PASSIVE_COOLING);
   REQUIRE(limits.getLowerLimit() == 0.0);
   REQUIRE(limits.getUpperLimit() == 35.0);
-   limits = typeWiseAlert.getTheLimitsForCoolingType(HI_ACTIVE_COOLING);
+  limits = typeWiseAlert.getTheLimitsForCoolingType(HI_ACTIVE_COOLING);
   REQUIRE(limits.getLowerLimit() == 0.0);
   REQUIRE(limits.getUpperLimit() == 45.0);
-   limits = typeWiseAlert.getTheLimitsForCoolingType(MED_ACTIVE_COOLING);
+  limits = typeWiseAlert.getTheLimitsForCoolingType(MED_ACTIVE_COOLING);
   REQUIRE(limits.getLowerLimit() == 0.0);
   REQUIRE(limits.getUpperLimit() == 40.0);
 }
