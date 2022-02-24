@@ -6,7 +6,7 @@
 
 using namespace InfoTypes;
 TypeWiseAlert typeWiseAlert;
-class mock_class
+class mock_class : public TypeWiseAlert
 {
   public:
   mock_class();
