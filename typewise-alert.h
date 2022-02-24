@@ -12,6 +12,12 @@
 using namespace std;
 using namespace InfoTypes;
 
+typedef enum
+{
+  SUCCESS,
+  FAILURE
+}Result;
+
 class TypeWiseAlert
 {
 public:
@@ -25,7 +31,7 @@ public:
    typedef void (TypeWiseAlert::*fnptr)(BreachType);
    typedef ::std::map< InfoTypes::AlertTarget , fnptr> T_AlerterMap;
 
-  void checkAndAlert( AlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC);
+  Result checkAndAlert( AlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC);
 
 private:
   BreachType inferBreach(double value,Limits limits);
@@ -34,9 +40,9 @@ private:
   void prepareBreachTypeStringMap();
   void prepareEmailRecepientList();
   void prepareControllerList();
-  void sendToController(BreachType breachType);
-  void sendToEmail(BreachType breachType);
-  void updateAlerter(AlertTarget alertTarget, BreachType breachType);
+  Result sendToController(BreachType breachType);
+  Result sendToEmail(BreachType breachType);
+  Result updateAlerter(AlertTarget alertTarget, BreachType breachType);
   void prepareAlerterMap();
   void updateMaps();
   Limits getTheLimitsForCoolingType(CoolingType coolingType);
