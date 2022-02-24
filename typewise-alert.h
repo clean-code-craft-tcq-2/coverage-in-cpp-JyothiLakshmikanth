@@ -28,7 +28,7 @@ public:
    typedef ::std::map< InfoTypes::BreachType, string> T_BreachTypeStringMap;
    typedef ::std::vector< ::std::string > EmailRecepientList;
    typedef ::std::vector< unsigned short> ControllerList;
-   typedef void (TypeWiseAlert::*fnptr)(BreachType);
+   typedef Result(TypeWiseAlert::*fnptr)(BreachType);
    typedef ::std::map< InfoTypes::AlertTarget , fnptr> T_AlerterMap;
 
   Result checkAndAlert( AlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC);
