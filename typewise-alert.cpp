@@ -81,31 +81,38 @@ BreachType TypeWiseAlert::classifyTemperatureBreach( CoolingType coolingType, do
   return inferBreach(temperatureInC, getTheLimitsForCoolingType(coolingType));
 }
 
-void TypeWiseAlert::checkAndAlert( AlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC)
+Result TypeWiseAlert::checkAndAlert( AlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC)
 {
-  BreachType breachType = classifyTemperatureBreach(batteryChar.coolingType, temperatureInC);
-  updateAlerter(alertTarget, breachType);
+    BreachType breachType = classifyTemperatureBreach(batteryChar.coolingType, temperatureInC);
+    return updateAlerter(alertTarget, breachType);
 }
 
-void TypeWiseAlert::updateAlerter(AlertTarget alertTarget, BreachType breachType)
+Result TypeWiseAlert::updateAlerter(AlertTarget alertTarget, BreachType breachType)
 {
+  Result result = FAILURE;
   T_AlerterMap::iterator alerterMapIt = m_alerterMap.find(alertTarget);
   if(alerterMapIt != m_alerterMap.end())
   {
-     (this->*(alerterMapIt->second))(breachType);
+    result = (this->*(alerterMapIt->second))(breachType);
   }
+  return result;
 }
 
-void TypeWiseAlert::sendToController(BreachType breachType)
+Result TypeWiseAlert::sendToController(BreachType breachType)
 {
-   ControllerList::iterator controllerListIt =  m_controllerList.begin();
-  for(; controllerListIt !=  m_controllerList.end(); ++controllerListIt)
-  {
-    printf("%x : %x\n", *controllerListIt, breachType);
-  }
+    if(!m_controllerList.empty())
+    {
+         ControllerList::iterator controllerListIt =  m_controllerList.begin();
+         for(; controllerListIt !=  m_controllerList.end(); ++controllerListIt)
+         {
+             printf("%x : %x\n", *controllerListIt, breachType);
+          }
+        return SUCCESS;
+    }
+    return FAILURE;
 }
 
-void TypeWiseAlert::sendToEmail(BreachType breachType) 
+Result TypeWiseAlert::sendToEmail(BreachType breachType) 
 {
   EmailRecepientList::iterator emailRecepientListIt = m_emailRecepientList.begin() ;
   for(; emailRecepientListIt !=  m_emailRecepientList.end(); ++emailRecepientListIt)
@@ -115,6 +122,11 @@ void TypeWiseAlert::sendToEmail(BreachType breachType)
     if(breachTypeStringMapIt != m_breachTypeStringMap.end())
     {
       printf("%s\n",breachTypeStringMapIt->second.c_str());
+        return SUCCESS;
+    }
+    else
+    {
+        return FAILURE;
     }
   }
 }
