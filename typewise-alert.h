@@ -46,6 +46,7 @@ private:
   void prepareAlerterMap();
   void updateMaps();
   Limits getTheLimitsForCoolingType(CoolingType coolingType);
+  void sendEmailsToClients(::string data);
 
     T_CoolingTypeLimits      m_coolingTypeLimits;
     T_BreachTypeStringMap    m_breachTypeStringMap;
