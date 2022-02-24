@@ -119,14 +119,19 @@ Result TypeWiseAlert::sendToEmail(BreachType breachType)
          {
              if(!m_emailRecepientList.empty())
             {
-               EmailRecepientList::iterator emailRecepientListIt = m_emailRecepientList.begin() ;
-               for(; emailRecepientListIt !=  m_emailRecepientList.end(); ++emailRecepientListIt)
-               {
-                  ::std::string recepient = *emailRecepientListIt;
-                   printf("%s - %s\n",recepient.c_str(),breachTypeStringMapIt->second.c_str());
-                   return SUCCESS;
-                }
+               sendEmailsToClients(breachTypeStringMapIt->second);
+                return SUCCESS;
             }
          }
     return FAILURE;
+}
+
+void TypeWiseAlert::sendEmailsToClients(::string data)
+{
+    EmailRecepientList::iterator emailRecepientListIt = m_emailRecepientList.begin() ;
+    for(; emailRecepientListIt !=  m_emailRecepientList.end(); ++emailRecepientListIt)
+    {
+       ::std::string recepient = *emailRecepientListIt;
+        printf("%s - %s\n",recepient.c_str(),data.c_str()); 
+    }
 }
