@@ -114,19 +114,19 @@ Result TypeWiseAlert::sendToController(BreachType breachType)
 
 Result TypeWiseAlert::sendToEmail(BreachType breachType) 
 {
-    if(!m_emailRecepientList.empty())
-    {
          T_BreachTypeStringMap::iterator breachTypeStringMapIt = m_breachTypeStringMap.find(breachType);
-           if(breachTypeStringMapIt != m_breachTypeStringMap.end())
-           {
+         if(breachTypeStringMapIt != m_breachTypeStringMap.end())
+         {
+             if(!m_emailRecepientList.empty())
+            {
                EmailRecepientList::iterator emailRecepientListIt = m_emailRecepientList.begin() ;
                for(; emailRecepientListIt !=  m_emailRecepientList.end(); ++emailRecepientListIt)
                {
                   ::std::string recepient = *emailRecepientListIt;
-                  printf("%s - %s\n",recepient,breachTypeStringMapIt->second.c_str());
-                  return SUCCESS;
-               }
-           }
-    }
+                   printf("%s - %s\n",recepient.c_str(),breachTypeStringMapIt->second.c_str());
+                   return SUCCESS;
+                }
+            }
+         }
     return FAILURE;
 }
