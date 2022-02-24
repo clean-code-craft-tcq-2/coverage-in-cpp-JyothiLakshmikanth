@@ -21,8 +21,8 @@ TEST_CASE("checkAndAlert")
 {
   BatteryCharacter batteryChar;
   batteryChar.coolingType = PASSIVE_COOLING;
-  typeWiseAlert.checkAndAlert(TO_CONTROLLER, batteryChar, 45);
- typeWiseAlert.checkAndAlert(TO_EMAIL, batteryChar, 45);
+  REQUIRE(typeWiseAlert.checkAndAlert(TO_CONTROLLER, batteryChar, 45) == SUCCESS);
+ REQUIRE(typeWiseAlert.checkAndAlert(TO_EMAIL, batteryChar, 45)== SUCCESS);
 }
 
 TEST_CASE("check_limits_for_different_cooling_Type")
