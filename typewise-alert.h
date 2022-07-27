@@ -121,4 +121,44 @@ for(; str_mapIt != str_map.end(); str_mapIt++)
 	return 0;
 }*/
 
+/*#include <iostream>
+#include <map>
+using namespace std;
+
+struct Pair_First_Equal {
+    template <typename Pair>
+    bool operator() (Pair const &lhs, Pair const &rhs) const {
+        return lhs.first == rhs.first;
+    }
+};
+
+template <typename Map>
+bool key_compare (Map const &lhs, Map const &rhs) {
+    return lhs.size() == rhs.size()
+        && std::equal(lhs.begin(), lhs.end(),
+                      rhs.begin(),
+                      Pair_First_Equal()); // predicate instance
+}
+
+int main () {
+    using namespace std;
+
+    map<string,string> a, b;
+
+    a["Foo"] = "0";
+    a["Bar"] = "1";
+    a["Frob"] = "2";
+
+    b["Foo"] = "0";
+    b["Bar"] = "1";
+    b["Frob"] = "2";
+
+    cout << "a == b? " << key_compare (a,b) << " (should be 1)\n";
+    b["Foo"] = "1";
+    cout << "a == b? " << key_compare (a,b) << " (should be 1)\n";
+
+    map<string,string> c;
+    cout << "a == c? " << key_compare (a,c)  << " (should be 0)\n";
+}*/
+
 #endif
