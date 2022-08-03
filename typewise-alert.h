@@ -160,5 +160,149 @@ int main () {
     map<string,string> c;
     cout << "a == c? " << key_compare (a,c)  << " (should be 0)\n";
 }*/
+/*
+#include<iostream>
+using namespace std;
+ 
+class A
+{
+    protected:
+    int a;
+   
+    public:
+        void set_A(int x)
+        {
+             a=x;           
+        }
+   
+        void disp_A()
+        {
+            cout<<endl<<"Value of A="<<a;
+        }
+};
+ 
+class B: public A
+{
+    public:
 
+    int b,p;
+     
+        void set_B(int x,int y)
+        {
+            set_A(x);
+            b=y;
+        }
+         
+        void disp_B()
+        {
+            disp_A();
+            cout<<endl<<"Value of B="<<b;
+        }
+         
+        void cal_product()
+        {
+            p=a*b;
+            cout<<endl<<"Product of "<<a<<" * "<<b<<" = "<<p;
+        }
+         
+};
+ 
+int main()
+{
+    B b;
+    b.set_B(4,5);
+    b.cal_product();
+    b.disp_B();
+    cout<<b.a<<endl;
+    
+    return 0;
+}*/
+/*
+// C++ Program to demonstrate Virtual
+// functions in derived classes
+#include <iostream>
+using namespace std;
+
+class A {
+public:
+A();
+virtual ~A();
+	virtual void fun() { cout << "\n A::fun() called "; }
+	protected:
+	int a;
+};
+
+A::A()
+{
+    cout<<"A const"<<endl;
+}
+
+A::~A()
+{
+    cout<<"A destructor"<<endl;
+}
+
+class B : public A {
+public:
+B();
+virtual ~B() ;
+	void fun() { cout << "\n B::fun() called "; }
+	private:
+	void updateValue();
+	void disp();
+};
+B::B()
+{
+    cout<<"B const"<<endl;
+    updateValue();
+    disp();
+}
+ B::~B()
+ {
+     cout<<"B destructor"<<endl;
+ }
+void B::updateValue()
+{
+    a=5;
+}
+
+void B::disp()
+{
+    cout<<a<<endl;
+}
+
+int main()
+{
+	// An object of class C
+	//C c;
+
+	// A pointer of class B pointing
+	// to memory location of c
+	//B* b = &c;
+A* b = new B;
+	// this line prints "C::fun() called"
+	b->fun();
+delete b;
+	getchar(); // to get the next character
+	return 0;
+}
+*/
+/*
+#include <iostream>
+#include <stdexcept>
+#include <vector>
+using namespace std;
+int main()
+{
+    std::vector<int> vec(5, 3);
+    try
+    {
+        for (int i = 0; i < vec.size(); ++i)
+            std::cout << vec.at(i) << " ";
+    }
+    catch (std::out_of_range& ex)
+    {
+        std::cout << "\nOut of range exception caught.\n" << ex.what() << std::endl;
+    }
+}*/
 #endif
